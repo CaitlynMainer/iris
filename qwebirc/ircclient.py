@@ -118,6 +118,8 @@ class QWebIRCClient(basic.LineReceiver):
           self.write("CAP END")
         
     if command == "001":
+      f = self.factory.ircinit
+      self.write("NS IDENTIFY %s %s" % (f["nick"], f["pass"]))
       self.registered = True
       self.__nickname = params[0]
       
